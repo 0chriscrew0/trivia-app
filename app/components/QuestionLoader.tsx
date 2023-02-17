@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { decode } from "html-entities";
 import { QuestionsType } from "../types/QuestionsType";
 import Question from "./Question";
 
@@ -15,13 +16,13 @@ export default function QuestionLoader() {
     queryFn: getQuestion,
     queryKey: ["get-question"],
   });
-  if (error) return <div>{error}</div>;
+  if (error) return <div>{`Error: ${error}`}</div>;
   if (isLoading) return <div>Loading...</div>;
 
   return (
     <div>
       {data?.results.map((question, i) => (
-        <Question key={i} question={question.question} />
+        <Question key={i} question={decode(question.question)} />
       ))}
     </div>
   );
