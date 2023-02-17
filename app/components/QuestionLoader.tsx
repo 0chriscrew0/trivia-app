@@ -7,7 +7,7 @@ import { QuestionsType } from "../types/QuestionsType";
 import Question from "./Question";
 
 const getQuestion = async () => {
-  const response = await axios.get("https://opentdb.com/api.php?amount=1");
+  const response = await axios.get("https://opentdb.com/api.php?amount=10");
   return response.data;
 };
 
@@ -15,14 +15,21 @@ export default function QuestionLoader() {
   const { data, error, isLoading } = useQuery<QuestionsType>({
     queryFn: getQuestion,
     queryKey: ["get-question"],
+    refetchOnWindowFocus: false,
   });
+
   if (error) return <div>{`Error: ${error}`}</div>;
   if (isLoading) return <div>Loading...</div>;
 
   return (
     <div>
       {data?.results.map((question, i) => (
-        <Question key={i} question={decode(question.question)} />
+        <Question
+          key={i}
+          question={decode(question.question)}
+          answer={question.correct_answer}
+          incorrectAnswers={question.incorrect_answers}
+        />
       ))}
     </div>
   );
