@@ -7,7 +7,7 @@ import { QuestionsType } from "../types/QuestionsType";
 import Question from "./Question";
 
 const getQuestion = async () => {
-  const response = await axios.get("https://opentdb.com/api.php?amount=10");
+  const response = await axios.get("https://opentdb.com/api.php?amount=1");
   return response.data;
 };
 
@@ -21,9 +21,11 @@ export default function QuestionLoader() {
   if (error) return <div>{`Error: ${error}`}</div>;
   if (isLoading) return <div>Loading...</div>;
 
+  const questions = data?.results;
+
   return (
-    <div>
-      {data?.results.map((question, i) => (
+    <div className=''>
+      {questions?.map((question, i) => (
         <Question
           key={i}
           question={decode(question.question)}

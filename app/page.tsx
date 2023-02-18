@@ -11,7 +11,6 @@ const roboto = Roboto({
 export default function Home() {
   return (
     <main className={roboto.className}>
-      <h1>Trivia App</h1>
       <QuestionLoader />
     </main>
   );
