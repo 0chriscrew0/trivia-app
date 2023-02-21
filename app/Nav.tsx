@@ -7,7 +7,7 @@ export default function Nav() {
   const [isOpen, setOpen] = useState(false);
   return (
     <div className='py-4'>
-      <div className='flex justify-between items-center mx-32'>
+      <div className='flex justify-between items-center mx-16 md:mx-32 lg:mx-64'>
         <h1>Trivio</h1>
         <button className=''>
           <Hamburger

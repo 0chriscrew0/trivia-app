@@ -18,7 +18,7 @@ export default function RootLayout({
       <body className='bg-white h-full'>
         <QueryWrapper>
           <Nav />
-          <div className='mx-32'>{children}</div>
+          <div className='mx-16 md:mx-32 lg:mx-64'>{children}</div>
         </QueryWrapper>
       </body>
     </html>
