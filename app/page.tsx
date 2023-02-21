@@ -10,7 +10,7 @@ const roboto = Roboto({
 
 export default function Home() {
   return (
-    <main className={roboto.className}>
+    <main className={`${roboto.className}`}>
       <QuestionLoader />
     </main>
   );

@@ -24,7 +24,7 @@ export default function QuestionLoader() {
   const questions = data?.results;
 
   return (
-    <div className=''>
+    <div className='mx-auto'>
       {questions?.map((question, i) => (
         <Question
           key={i}
