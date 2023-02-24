@@ -7,5 +7,9 @@ type AnswerProps = {
 };
 
 export default function Answer({ answer }: AnswerProps) {
-  return <div className='text-center border-2 py-2'>{decode(answer)}</div>;
+  return (
+    <button className='text-center border-2 py-2 hover:bg-green-400 hover:drop-shadow-lg hover:scale-105'>
+      {decode(answer)}
+    </button>
+  );
 }
