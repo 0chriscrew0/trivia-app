@@ -7,6 +7,7 @@ type QuestionProps = {
   question: string;
   answer: string;
   incorrectAnswers: string[];
+  updateQuestion: () => void;
 };
 
 enum QuestionStatus {
@@ -19,6 +20,7 @@ export default function Question({
   question,
   answer,
   incorrectAnswers,
+  updateQuestion,
 }: QuestionProps) {
   const [grade, setGrade] = useState(QuestionStatus.Unanswered);
   const allAnswers = [...incorrectAnswers, answer];
@@ -30,6 +32,7 @@ export default function Question({
     } else {
       setGrade(QuestionStatus.Incorrect);
     }
+    updateQuestion();
   };
 
   return (
