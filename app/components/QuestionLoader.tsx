@@ -14,6 +14,7 @@ const getQuestion = async () => {
 
 export default function QuestionLoader() {
   const [questionNumber, setQuestionNumber] = useState(0);
+  const [score, setScore] = useState(0);
   const { data, error, isLoading } = useQuery<QuestionsType>({
     queryFn: getQuestion,
     queryKey: ["get-question"],
@@ -22,6 +23,10 @@ export default function QuestionLoader() {
 
   const updateQuestion = () => {
     setQuestionNumber(questionNumber + 1);
+  };
+
+  const updateScore = () => {
+    setScore(score + 1);
   };
 
   if (error) return <div>{`Error: ${error}`}</div>;
@@ -36,13 +41,16 @@ export default function QuestionLoader() {
 
   return (
     <div className='mx-auto'>
-      {questionNumber < numQuestions && (
+      {questionNumber < numQuestions ? (
         <Question
           question={decode(question.question)}
           answer={question.correct_answer}
           incorrectAnswers={question.incorrect_answers}
           updateQuestion={updateQuestion}
+          updateScore={updateScore}
         />
+      ) : (
+        <div>{`You  got ${score} questions right!`}</div>
       )}
     </div>
   );
