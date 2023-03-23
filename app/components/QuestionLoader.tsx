@@ -32,15 +32,18 @@ export default function QuestionLoader() {
     return;
   }
   const question = questions[questionNumber];
+  const numQuestions = questions.length;
 
   return (
     <div className='mx-auto'>
-      <Question
-        question={decode(question.question)}
-        answer={question.correct_answer}
-        incorrectAnswers={question.incorrect_answers}
-        updateQuestion={updateQuestion}
-      />
+      {questionNumber < numQuestions && (
+        <Question
+          question={decode(question.question)}
+          answer={question.correct_answer}
+          incorrectAnswers={question.incorrect_answers}
+          updateQuestion={updateQuestion}
+        />
+      )}
     </div>
   );
 }
