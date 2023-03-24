@@ -5,7 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { decode } from "html-entities";
 import { QuestionsType } from "../types/QuestionsType";
 import Question from "./Question";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { setUncaughtExceptionCaptureCallback } from "process";
 
 const getQuestion = async () => {
   const response = await axios.get("https://opentdb.com/api.php?amount=10");
@@ -19,6 +20,14 @@ export default function QuestionLoader() {
     queryFn: getQuestion,
     queryKey: ["get-question"],
     refetchOnWindowFocus: false,
+  });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // when time is up
+      setQuestionNumber(questionNumber + 1);
+    }, 10000);
+    return () => clearTimeout(timer);
   });
 
   const updateQuestion = () => {
