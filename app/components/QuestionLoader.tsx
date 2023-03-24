@@ -50,7 +50,7 @@ export default function QuestionLoader() {
           updateScore={updateScore}
         />
       ) : (
-        <div>{`You  got ${score} questions right!`}</div>
+        <div>{`You  got ${score} out of ${numQuestions} questions right!`}</div>
       )}
     </div>
   );
